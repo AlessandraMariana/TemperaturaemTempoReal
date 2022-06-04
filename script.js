@@ -4,18 +4,6 @@ const api = {
     lang: "pt_br",
     units: "metric"
 }
-
-const city = document.querySelector('.city')
-const date = document.querySelector('.date');
-const container_img = document.querySelector('.container-img');
-const container_temp = document.querySelector('.container-temp');
-const temp_number = document.querySelector('.container-temp div');
-const temp_unit = document.querySelector('.container-temp span');
-const weather_t = document.querySelector('.weather');
-const search_input = document.querySelector('.form-control');
-const search_button = document.querySelector('.btn');
-const low_high = document.querySelector('.low-high');
-
 window.addEventListener('load', () => {
     //if ("geolocation" in navigator)
     if (navigator.geolocation) {
@@ -34,7 +22,6 @@ window.addEventListener('load', () => {
         alert(`erro: ${error.message}`);
     }
 })
-
 function coordResults(lat, long) {
     fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
         .then(response => {
@@ -50,6 +37,17 @@ function coordResults(lat, long) {
             displayResults(response)
         });
 }
+
+const city = document.querySelector('.city')
+const date = document.querySelector('.date');
+const container_img = document.querySelector('.container-img');
+const container_temp = document.querySelector('.container-temp');
+const temp_number = document.querySelector('.container-temp div');
+const temp_unit = document.querySelector('.container-temp span');
+const weather_t = document.querySelector('.weather');
+const search_input = document.querySelector('.form-control');
+const search_button = document.querySelector('.btn');
+const low_high = document.querySelector('.low-high');
 
 search_button.addEventListener('click', function() {
     searchResults(search_input.value)
@@ -108,8 +106,8 @@ function dateBuilder(d) {
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
-
-    return `${day}, ${date} ${month} ${year}`;
+    var time = d.getHours() +"h:"+ d.getMinutes()+"m";
+    return `${day}, ${date} ${month} ${year} ${time}`;
 }
 
 container_temp.addEventListener('click', changeTemp)
@@ -131,3 +129,4 @@ function changeTemp() {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+

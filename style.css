@@ -1,35 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 body{
-    font-family: 'Arvo', serif;
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 25px;
+    transition: ease-in-out 1s;
+    background-image: url("imagens/fundo\ rosa.jpg");
+    background-color: #ffcbdb;
+}
+
+.card-header {
+    font-size: 23px;
 }
 
 .city{
-    font-size: 32px;
+    font-size: 35px;
 }
 
 .date {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .container-temp{
     display: flex;
     justify-content: center;
-    background-color: rgba(244, 208, 63, 0.2);
+    background-color: rgba(255, 0, 127, 0.2);
     box-shadow: 5px 6px rgba(0, 0, 0, 0.6);
     cursor: pointer;
 
     font-size: 100px;
     font-weight: 900;
-    text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    text-shadow: 5px 3px rgba(0, 0, 0, 0.2);
 }
 
 .weather{
-    font-size: 32px;
+    font-size: 33px;
 }
 
 .low-high {
-    font-size: 22px;
+    font-size: 23px;
 }
 
+button{
+    background-color: #ffcbdb;
+    border: none;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 4px;
+    cursor: pointer;
+}
+.button{
+padding-bottom: 20px;
 
+}

@@ -14,15 +14,14 @@
 <body>
   <div class="container-fluid p-0 container-sm d-flex justify-content-center">
 
-    <div class="card text-center shadow-lg" style="width: 23rem;">
+    <div class="card text-center shadow-lg" style="width: 27rem;">
 
-      <div class="card-header bg-white text-dark font-weight-bold">
-        TEMPO E TEMPERATURA
+      <div class="card-header text-dark font-weight-bold">
+        Clima Tempo
       </div>
       <div class="card-body">
         <div class="city">Cidade, BR</div>
-        <div class="date">Dia, 31 Dezembro de 2021</div>
-        <div class="hora">00:00</div>
+        <div class="date">Dia, 31 dezembro  2021</div>
         <div class="container-img">
           <img src="./icons/unknown.png">
         </div>
@@ -36,16 +35,36 @@
 
       <div class="card-footer bg-white">
         <div class="input-group ">
-          <input type="text" class="form-control bg-light" placeholder="digite o nome da cidade" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input type="text" class="form-control bg-light" placeholder="Pesquise a cidade que deseja" aria-label="Recipient's username" aria-describedby="button-search">
           <div class="input-group-append">
-            <button class="btn btn-outline-warning text-dark" type="button" id="button-addon2">
+            <button class="btn btn-outline-warning text-dark" type="button" id="button-search">
               <i class="fas fa-search"></i>
             </button>
           </div>
         </div>
       </div>
-
-    </div>
+            
+            <div class="button">
+              <button onclick="salvartempo()">Salvar Tempo</button>
+              <button onclick="mostrarhist()" class="btn-mostrar">Mostrar Histórico</button>
+              <button onclick="escondehist()" class="btn-esconder" hidden>Esconder Histórico</button>
+          </div>  
+        </div>
+        <div class="historico" hidden>
+          <table>
+              <thead>
+                  <th>Cidade</th>
+                  <th>Temp(ºc)</th>
+                  <th>Icon</th>
+                  <th>Clima</th>
+                  <th>Data</th>                
+                  <th>Min / Máx</th>
+              </thead>
+              <tbody class="tbody">                
+              </tbody>            
+          </table>
+      </div>
+     </div>
   </div>
 
   <script src="script.js"></script>
