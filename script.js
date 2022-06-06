@@ -4,6 +4,19 @@ const api = {
     lang: "pt_br",
     units: "metric"
 }
+
+const city = document.querySelector('.city')
+const date = document.querySelector('.date');
+const container_img = document.querySelector('.container-img');
+const container_temp = document.querySelector('.container-temp');
+const temp_number = document.querySelector('.container-temp div');
+const temp_unit = document.querySelector('.container-temp span');
+const modal = document.querySelector('.modal-container');
+const weather_t = document.querySelector('.weather');
+const search_input = document.querySelector('.form-control');
+const search_button = document.querySelector('.btn');
+const low_high = document.querySelector('.low-high');
+
 window.addEventListener('load', () => {
     //if ("geolocation" in navigator)
     if (navigator.geolocation) {
@@ -22,6 +35,7 @@ window.addEventListener('load', () => {
         alert(`erro: ${error.message}`);
     }
 })
+
 function coordResults(lat, long) {
     fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
         .then(response => {
@@ -37,17 +51,6 @@ function coordResults(lat, long) {
             displayResults(response)
         });
 }
-
-const city = document.querySelector('.city')
-const date = document.querySelector('.date');
-const container_img = document.querySelector('.container-img');
-const container_temp = document.querySelector('.container-temp');
-const temp_number = document.querySelector('.container-temp div');
-const temp_unit = document.querySelector('.container-temp span');
-const weather_t = document.querySelector('.weather');
-const search_input = document.querySelector('.form-control');
-const search_button = document.querySelector('.btn');
-const low_high = document.querySelector('.low-high');
 
 search_button.addEventListener('click', function() {
     searchResults(search_input.value)
@@ -96,8 +99,35 @@ function displayResults(weather) {
     weather_t.innerText = capitalizeFirstLetter(weather_tempo)
 
     low_high.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-}
 
+
+const saveLocalStorage = []
+  saveLocalStorage.push(weather)
+  localStorage.setItem('weather', JSON.stringify(saveLocalStorage))
+  localStorage.setItem('ciyt', weather.name)
+  localStorage.setItem('country', weather.sys.country)
+  localStorage.setItem('temperature', temperature)
+  localStorage.setItem('weather_tempo', weather_tempo)
+  localStorage.setItem('low_high', low_high.innerText)
+  localStorage.setItem('time_now', time_now)
+  localStorage.setItem('date', date.innerText)
+}
+function openModal() {
+    modal.classList.add('active')
+    document.querySelector('.modal-body').innerHTML = `
+      <h2 class="modal-title">${capitalizeFirstLetter(city.innerHTML)}</h2>
+      <div class="date">${capitalizeFirstLetter(date.innerText)}</div>
+      <div class="modal-body">
+        <p>${weather_t.innerHTML}</p>
+        <p>${temp_number.innerHTML}${temp_unit.innerHTML}</p>
+        <p>${low_high.innerHTML}</p>
+      </div>
+    `
+  }
+  
+  function closeModal() {
+    modal.classList.remove('active')
+  }
 function dateBuilder(d) {
     let days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julio", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -106,8 +136,8 @@ function dateBuilder(d) {
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
-    var time = d.getHours() +"h:"+ d.getMinutes()+"m";
-    return `${day}, ${date} ${month} ${year} ${time}`;
+    let time = d.getHours() +"h:"+ d.getMinutes()+"m";
+    return `${day}, ${date} ${month} ${year} ${time}`; 
 }
 
 container_temp.addEventListener('click', changeTemp)

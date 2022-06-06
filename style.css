@@ -40,6 +40,18 @@ body{
     font-size: 23px;
 }
 
+.h2{
+    background-color: #ffcbdb;
+    border: none;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 4px;
+    cursor: pointer;}
+
 button{
     background-color: #ffcbdb;
     border: none;
@@ -56,3 +68,4 @@ button{
 padding-bottom: 20px;
 
 }
+
